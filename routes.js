@@ -45,4 +45,17 @@ router.get("/coming", async (req, res) => {
   }
 });
 
+router.get("/movie/:movieId", async (req, res) => {
+  try {
+    const apiRes = await api.getMovie(req.params.movieId);
+    res.status(apiRes.status).json(apiRes.data);
+  } catch(err) {
+    if(err.response) {
+      res.status(err.response.status).json(err.response.data);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 module.exports = router;
