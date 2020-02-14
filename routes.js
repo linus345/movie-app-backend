@@ -2,10 +2,6 @@ const express = require('express');
 const api = require('./api');
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("home page");
-});
-
 router.get("/popular", async (req, res) => {
   try {
     const apiRes = await api.getPopular();
