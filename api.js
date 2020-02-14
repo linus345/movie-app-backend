@@ -27,7 +27,13 @@ function getNew() {
   return getMoviesBy("upcoming");
 }
 
+function getMovie(movieId) {
+  const url = `/movie/${movieId}`;
+  return instance.get(url);
+}
+
 exports.getPopular = getPopular;
 exports.getTop = getTop;
 exports.getNew = getNew;
+exports.getMovie = getMovie;
 
