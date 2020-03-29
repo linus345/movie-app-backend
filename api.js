@@ -48,10 +48,26 @@ function getMoviesByGenreId(genreId, query = {}) {
   return discoverMovies(params);
 }
 
+// Actor
+function getActor(actorId) {
+  const url = `/person/${actorId}`;
+  return instance.get(url);
+}
+
+function getMoviesWithActor(actorId, query = {}) {
+  const params = {
+    ...query,
+    "with_cast": actorId,
+  };
+  return discoverMovies(params);
+}
+
+// exports
 exports.getPopular = getPopular;
 exports.getTop = getTop;
 exports.getNew = getNew;
 exports.getMovie = getMovie;
 exports.getGenres = getGenres;
 exports.getMoviesByGenreId = getMoviesByGenreId;
-
+exports.getActor = getActor;
+exports.getMoviesWithActor = getMoviesWithActor;

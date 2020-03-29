@@ -80,4 +80,31 @@ router.get("/genre/:genreId", async (req, res) => {
   }
 });
 
+// actor
+router.get("/person/:actorId/movies", async (req, res) => {
+  try {
+    const apiRes = await api.getMoviesWithActor(req.params.actorId);
+    res.status(apiRes.status).json(apiRes.data);
+  } catch(err) {
+    if(err.response) {
+      res.status(err.response.status).json(err.response.data);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
+router.get("/person/:actorId", async (req, res) => {
+  try {
+    const apiRes = await api.getActor(req.params.actorId);
+    res.status(apiRes.status).json(apiRes.data);
+  } catch(err) {
+    if(err.response) {
+      res.status(err.response.status).json(err.response.data);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 module.exports = router;
