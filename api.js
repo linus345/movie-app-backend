@@ -48,6 +48,12 @@ function getMoviesByGenreId(genreId, query = {}) {
   return discoverMovies(params);
 }
 
+function searchMovies(searchQuery, query) {
+  return instance.get("/search/movie", {
+    params: { query: searchQuery, ...query },
+  });
+}
+
 // Actor
 function getActor(actorId) {
   const url = `/person/${actorId}`;
@@ -69,5 +75,6 @@ exports.getNew = getNew;
 exports.getMovie = getMovie;
 exports.getGenres = getGenres;
 exports.getMoviesByGenreId = getMoviesByGenreId;
+exports.searchMovies = searchMovies;
 exports.getActor = getActor;
 exports.getMoviesWithActor = getMoviesWithActor;

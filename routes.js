@@ -80,6 +80,19 @@ router.get("/genre/:genreId", async (req, res) => {
   }
 });
 
+router.get("/search/:searchQuery", async (req, res) => {
+  try {
+    const apiRes = await api.searchMovies(req.params.searchQuery, req.query);
+    res.status(apiRes.status).json(apiRes.data);
+  } catch(err) {
+    if(err.response) {
+      res.status(err.response.status).json(err.response.data);
+    } else {
+      res.status(500).json(err);
+    }
+  }
+});
+
 // actor
 router.get("/person/:actorId/movies", async (req, res) => {
   try {
